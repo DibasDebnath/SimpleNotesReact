@@ -1,0 +1,189 @@
+
+
+.main-content {
+  flex: 1; /* This ensures that the content area takes up remaining space */
+  padding: 2rem;
+  text-align: center;
+  background-color: #2b2b2b;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #dadada;
+  margin-bottom: 1rem;
+}
+
+/* Button to toggle the note input section */
+.toggle-input-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #464545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.note-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.note-input input, .note-input textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.note-input textarea {
+  font-size: 1rem;
+  resize: vertical;
+  height: 35px;
+}
+
+/* Add styles to highlight errors */
+.note-input input.error,
+.note-input textarea.error {
+  border-color: #e74c3c;
+  background-color: #f8d7da;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.note-input button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #464545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.notes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.note-item-btn {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  padding-bottom: 0rem;
+  
+}
+
+.note-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5rem;
+  background-color: #3a3a3a;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.note-item h3 {
+  margin: 0 0 0.5rem;
+  color: #ffffff;
+}
+
+.note-item p {
+  margin: 0 0 0.5rem;
+  color: #ffffff;
+}
+
+.date-text {
+  padding-top: 0.5rem;
+  text-align: right;
+  
+}
+
+.note-item:hover {
+  background-color: #2c2c2c;
+}
+
+.note-input button:hover {
+  background-color: #424242;
+}
+
+.toggle-input-btn:hover {
+  background-color: #424242;
+}
+
+.loadMore-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #474747;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.loadMore-btn:hover {
+  background-color: #424242;
+}
+
+
+
+.toggle-search-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #464545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-search-btn:hover {
+  background-color: #424242;
+}
+
+.toggle-search-input {
+  margin-top: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #464545;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.toggle-search-input:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+.toggle-search-input:focus {
+  background-color: #f4f6f7;
+}
+

@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+}
+
+.center {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.button {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
