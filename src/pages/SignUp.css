@@ -47,7 +47,7 @@
 }
 
 /* Sign-up button styling */
-.signup-form button {
+.signup-form-btn {
   width: 100%;
   padding: 0.75rem;
   background-color: #007bff;
@@ -60,7 +60,7 @@
   transition: background-color 0.3s ease;
 }
 
-.signup-form button:hover {
+.signup-form-btn:hover {
   background-color: #0056b3;
 }
 
@@ -105,4 +105,35 @@
 .signin-link button:hover {
   color: #1900ff;
   background-color: inherit;
+}
+
+/* Password input container for reveal button */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the password input with the reveal button inside */
+.password-input-container input[type="password"],
+.password-input-container input[type="text"] {
+  padding-right: 2.5rem; /* Adds space for the reveal button */
+}
+
+/* Reveal password button styling */
+.reveal-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #007bff;
+  padding: 0;
+}
+
+.reveal-password-btn:hover {
+  color: #0056b3;
 }

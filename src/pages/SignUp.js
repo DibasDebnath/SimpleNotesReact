@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "../contexts/AuthContext"; // Import AuthContext
+import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
@@ -11,9 +11,10 @@ const SignUp = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Track password visibility
   const navigate = useNavigate();
-  const { signup } = useContext(AuthContext); // Access signup function from context
-  // const URL = "http://localhost:4000";
+  const { signup } = useContext(AuthContext);
   const URL = "https://simplenotesbackend.onrender.com";
 
   const handleChange = (e) => {
@@ -23,27 +24,26 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.username || !formData.email || !formData.password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    setIsSigningUp(true);
+
     try {
-      // Basic Validation
-      if (!formData.username || !formData.email || !formData.password) {
-        setError("Please fill in all fields.");
-        return;
-      }
-
-      const response = await axios.post(
-        URL+"/api/auth/register",
-        formData
-      );
-
+      const response = await axios.post(URL + "/api/auth/register", formData);
       const { token } = response.data;
 
       if (token) {
-        signup(token); // Call signup function from context to update global auth state
+        signup(token);
         console.log("Signed up successfully");
-        navigate("/"); // Redirect to home page or dashboard
+        navigate("/");
       }
     } catch (error) {
-      setError(error.response?.data?.error || "An error occurred"); // Handle API error messages
+      setError(error.response?.data?.error || "An error occurred");
+    } finally {
+      setIsSigningUp(false);
     }
   };
 
@@ -70,15 +70,30 @@ const SignUp = () => {
             placeholder="Email"
             required
           />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Sign Up</button>
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="reveal-password-btn"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+          <button
+            className="signup-form-btn"
+            type="submit"
+            disabled={isSigningUp}
+          >
+            {isSigningUp ? "Signing Up..." : "Sign Up"}
+          </button>
         </form>
         <div className="signin-link">
           <button onClick={() => navigate("/signin")}>

@@ -27,7 +27,8 @@
 
 /* Input fields styling */
 .signin-form input[type="email"],
-.signin-form input[type="password"] {
+.signin-form input[type="password"],
+.signin-form input[type="text"] {
   width: 93%;
   padding: 0.75rem;
   margin-bottom: 1rem;
@@ -40,12 +41,13 @@
 
 /* Input focus effect */
 .signin-form input[type="email"]:focus,
-.signin-form input[type="password"]:focus {
+.signin-form input[type="password"]:focus,
+.signin-form input[type="text"]:focus {
   border-color: #007bff;
 }
 
 /* Sign-in button styling */
-.signin-form button {
+.signin-form-btn {
   width: 100%;
   padding: 0.75rem;
   background-color: #007bff;
@@ -58,7 +60,7 @@
   transition: background-color 0.3s ease;
 }
 
-.signin-form button:hover {
+.signin-form-btn:hover {
   background-color: #0056b3;
 }
 
@@ -107,4 +109,31 @@
 .signup-link button:hover {
   color: #1900ff;
   background-color: inherit;
+}
+
+/* Positioning container for password input with reveal button */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Password input with padding to fit the smaller reveal button */
+.password-input-container input[type="password"],
+.password-input-container input[type="text"] {
+  padding-right: 2rem; /* Adjusted space for smaller reveal button */
+}
+
+/* Reveal password button styling */
+.reveal-password-btn {
+  position: absolute;
+  right: 8px; /* Move slightly closer to the edge */
+  top: 36.5%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem; /* Smaller font size */
+  padding: 0;
+  margin: 0; /* Remove any extra margins */
 }

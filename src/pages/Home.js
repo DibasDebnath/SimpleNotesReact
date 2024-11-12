@@ -144,8 +144,10 @@ const Home = () => {
     }
   };
 
-  const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      note.details.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -195,7 +197,7 @@ const Home = () => {
       <input
         className="toggle-search-input"
         type="text"
-        placeholder="Search by title..."
+        placeholder="Search in title/details..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

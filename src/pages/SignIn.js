@@ -7,10 +7,12 @@ import "./SignIn.css";
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Track password visibility
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // Access the login method from context
-  // const URL = "http://localhost:4000";
+  const { login } = useContext(AuthContext);
   const URL = "https://simplenotesbackend.onrender.com";
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,31 +20,32 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation before submitting the form
     if (!formData.email || !formData.password) {
       setError("Please enter both email and password.");
       return;
     }
 
+    setIsSigningIn(true);
+
     try {
       const response = await axios.post(URL + "/api/auth/login", formData);
-
       const token = response.data.token;
 
-      // Use the login function from context to update the authentication state
       login(token);
 
       console.log("Logged in successfully");
-      navigate("/"); // Redirect to home or dashboard
+      navigate("/");
     } catch (error) {
       const errorMessage =
         error.response?.data?.error || "An unexpected error occurred.";
       setError(errorMessage);
+    } finally {
+      setIsSigningIn(false);
     }
   };
 
   const handleSignUpRedirect = () => {
-    navigate("/signup"); // Redirect to SignUp page
+    navigate("/signup");
   };
 
   return (
@@ -59,18 +62,32 @@ const SignIn = () => {
             placeholder="Email"
             required
           />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Sign In</button>
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="reveal-password-btn"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+          <button
+            className="signin-form-btn"
+            type="submit"
+            disabled={isSigningIn}
+          >
+            {isSigningIn ? "Signing In..." : "Sign In"}
+          </button>
         </form>
 
-        {/* Sign-up link */}
         <div className="signup-link">
           <button onClick={handleSignUpRedirect}>
             Don’t have an account? Sign up here

@@ -6,46 +6,39 @@ import { AuthContext } from "../contexts/AuthContext";
 const NoteDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { authToken } = useContext(AuthContext); // Use authToken from context
+  const { authToken } = useContext(AuthContext);
 
-  // Check if note exists in the location state
-  const { note } = location.state || {}; // Default to an empty object if note is undefined
-
+  const { note } = location.state || {};
   const [title, setTitle] = useState(note?.title || "");
   const [details, setDetails] = useState(note?.details || "");
   const [isLoading, setIsLoading] = useState(false);
   const [isUpdated, setIsUpdated] = useState(false);
   const [updateDone, setUpdateDone] = useState(false);
   const [updateStatus, setUpdateStatus] = useState("");
-  const [isNoteAvailable, setIsNoteAvailable] = useState(true); // Track if note is available
+  const [isNoteAvailable, setIsNoteAvailable] = useState(true);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // State for delete confirmation popup
 
   const textareaRef = useRef(null);
   const URL = "https://simplenotesbackend.onrender.com";
 
   useEffect(() => {
     if (!authToken) {
-      console.log("missing");
-
       navigate("/signin");
     }
   }, [authToken, navigate]);
 
-  // Handle the case when note is undefined
   useEffect(() => {
     if (!note) {
-      setIsNoteAvailable(false); // Set note availability to false if note is not passed
+      setIsNoteAvailable(false);
     }
   }, [note]);
 
-  // Redirect to home page if note is unavailable after initial check
   useEffect(() => {
     if (!isNoteAvailable) {
-      
-      navigate("/"); // Redirect to home if no note is available
+      navigate("/");
     }
   }, [isNoteAvailable, navigate]);
 
-  // Track changes to the title and details
   useEffect(() => {
     if (title !== note?.title || details !== note?.details) {
       setIsUpdated(true);
@@ -73,18 +66,15 @@ const NoteDetails = () => {
       const response = await fetch(URL + `/api/notes/${note._id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${authToken}`, // Include the token from context
+          Authorization: `Bearer ${authToken}`,
         },
       });
 
       if (response.ok) {
-        navigate("/"); // Redirect after successful deletion
-      } else {
-        //alert("Failed to delete the note");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error deleting the note:", error);
-      //alert("Failed to delete the note");
     } finally {
       setIsLoading(false);
     }
@@ -105,7 +95,7 @@ const NoteDetails = () => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`, // Include the token from context
+          Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify({ title, details }),
       });
@@ -124,7 +114,14 @@ const NoteDetails = () => {
     }
   };
 
-  // If note is not available, show a loading state or error message
+  const confirmDelete = () => {
+    setShowDeleteConfirm(true); // Show the delete confirmation popup
+  };
+
+  const closePopup = () => {
+    setShowDeleteConfirm(false); // Close the popup without deleting
+  };
+
   if (!isNoteAvailable) {
     return <p>Note not found. Redirecting...</p>;
   }
@@ -167,7 +164,11 @@ const NoteDetails = () => {
                 Update
               </button>
             )}
-            <button type="button" onClick={handleDelete} className="delete-btn">
+            <button
+              type="button"
+              onClick={confirmDelete}
+              className="delete-btn"
+            >
               Delete
             </button>
           </>
@@ -186,6 +187,23 @@ const NoteDetails = () => {
           </p>
         )}
       </form>
+
+      {/* Delete confirmation popup */}
+      {showDeleteConfirm && (
+        <div className="delete-popup">
+          <div className="popup-content">
+            <p>Are you sure you want to delete?</p>
+            <div className="popup-buttons">
+              <button className="button" onClick={handleDelete}>
+                Yes
+              </button>
+              <button className="button" onClick={closePopup}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
