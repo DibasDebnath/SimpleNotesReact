@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,14 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Track visibility for confirm password
   const navigate = useNavigate();
-  const { signup, URL } = useContext(AuthContext);
+  const { authToken, signup, URL } = useContext(AuthContext);
+
+  // Redirect to sign-in if user is not authenticated
+  useEffect(() => {
+    if (authToken) {
+      navigate("/");
+    }
+  }, [authToken, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

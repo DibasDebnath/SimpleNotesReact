@@ -1,18 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 
 const SignIn = () => {
+  
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // Track password visibility
   const navigate = useNavigate();
-  const { login, URL } = useContext(AuthContext);
+  const { authToken,login, URL } = useContext(AuthContext);
   // const URL = "http://localhost:4000";
   //const URL = "https://simplenotesbackend.onrender.com";
+
+  // Redirect to sign-in if user is not authenticated
+  useEffect(() => {
+    if (authToken) {
+      navigate("/");
+    }
+  }, [authToken, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
