@@ -11,7 +11,7 @@ import "./Home.css";
 import { format } from "date-fns";
 
 const Home = () => {
-  const { authToken } = useContext(AuthContext); // Use authToken from context
+  const { authToken, URL } = useContext(AuthContext); // Use authToken from context
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
@@ -25,7 +25,7 @@ const Home = () => {
   const navigate = useNavigate();
   const textareaRef = useRef(null);
   // const URL = "http://localhost:4000";
-  const URL = "https://simplenotesbackend.onrender.com";
+  //const URL = "https://simplenotesbackend.onrender.com";
 
   
 
@@ -125,7 +125,7 @@ const Home = () => {
         setIsLoading(false);
       }
     },
-    [authToken, limit]
+    [authToken, limit, URL]
   );
 
   useEffect(() => {

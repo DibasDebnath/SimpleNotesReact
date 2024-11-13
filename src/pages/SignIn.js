@@ -10,8 +10,9 @@ const SignIn = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // Track password visibility
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-  const URL = "https://simplenotesbackend.onrender.com";
+  const { login, URL } = useContext(AuthContext);
+  // const URL = "http://localhost:4000";
+  //const URL = "https://simplenotesbackend.onrender.com";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -9,13 +9,14 @@ const SignUp = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "", // Add confirm password field
   });
   const [error, setError] = useState("");
   const [isSigningUp, setIsSigningUp] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // Track password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Track visibility for confirm password
   const navigate = useNavigate();
-  const { signup } = useContext(AuthContext);
-  const URL = "https://simplenotesbackend.onrender.com";
+  const { signup, URL } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +25,18 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.email || !formData.password) {
+    if (
+      !formData.username ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
       setError("Please fill in all fields.");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
       return;
     }
 
@@ -45,6 +56,16 @@ const SignUp = () => {
     } finally {
       setIsSigningUp(false);
     }
+  };
+
+  const isFormValid = () => {
+    return (
+      formData.username &&
+      formData.email &&
+      formData.password &&
+      formData.confirmPassword &&
+      formData.password === formData.confirmPassword
+    );
   };
 
   return (
@@ -87,10 +108,27 @@ const SignUp = () => {
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
+          <div className="password-input-container">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm Password"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="reveal-password-btn"
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </button>
+          </div>
           <button
             className="signup-form-btn"
             type="submit"
-            disabled={isSigningUp}
+            disabled={!isFormValid() || isSigningUp}
           >
             {isSigningUp ? "Signing Up..." : "Sign Up"}
           </button>

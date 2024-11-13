@@ -1,0 +1,190 @@
+/* Profile container */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  background-color: inherit;
+  min-height: 100%;
+}
+
+/* Profile form container */
+.profile-form {
+  width: 100%;
+  max-width: 400px;
+  background-color: #3a3a3a;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header styling */
+.profile-form h1 {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+/* Input field styling */
+.profile-form input[type="text"],
+.profile-form input[type="password"] {
+  width: 93%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Input focus effect */
+.profile-form input[type="text"]:focus,
+.profile-form input[type="password"]:focus {
+  border-color: #007bff;
+}
+
+/* Update button styling */
+.update-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Delete button styling */
+.delete-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f44336; /* Red for delete action */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.delete-btn:disabled {
+  background-color: #e57373; /* Disabled state (light red) */
+  cursor: not-allowed;
+}
+
+.profile-form h2 {
+  color: rgb(255, 0, 0);
+  
+  margin-top: 10px;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ff4d4f;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+/* Disabled update button styling */
+.update-btn:disabled {
+  background-color: #4b4b4b;
+  cursor: not-allowed;
+}
+
+/* Password input container for reveal button */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the password input */
+.password-input-container input[type="password"] {
+  padding-right: 2.5rem; /* Adds space for the reveal button */
+}
+
+/* Reveal password button styling */
+.reveal-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #007bff;
+  padding: 0;
+}
+
+.reveal-password-btn:hover {
+  color: #0056b3;
+}
+
+.password-update-container {
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+/* Success message styling */
+.success-message {
+  color: green;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: rgb(221, 1, 1);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+
+.delete-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dim background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #303030;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+  color: #ffffff;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  color:  #303030;
+}
+
+.email {
+  color: #ffffff;
+}

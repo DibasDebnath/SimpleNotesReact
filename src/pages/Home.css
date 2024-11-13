@@ -169,11 +169,12 @@ h1 {
 .toggle-search-input {
   margin-top: 10px;
   padding: 0.5rem;
+  padding-left: 1rem;
   font-size: 1rem;
   width: 100%;
   max-width: 400px;
   border: 1px solid #464545;
-  border-radius: 5px;
+  border-radius: 1rem;
   box-sizing: border-box;
   transition: border-color 0.3s ease;
 }

@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Profile from "./pages/Profile";
+
 
 function App() {
   // Protected route component
@@ -27,6 +29,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/profile" element={<Profile />} />
               <Route
                 path="/note/:id"
                 element={

@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const NoteDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { authToken } = useContext(AuthContext);
+  const { authToken, URL } = useContext(AuthContext);
 
   const { note } = location.state || {};
   const [title, setTitle] = useState(note?.title || "");
@@ -19,7 +19,8 @@ const NoteDetails = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // State for delete confirmation popup
 
   const textareaRef = useRef(null);
-  const URL = "https://simplenotesbackend.onrender.com";
+  // const URL = "http://localhost:4000";
+  //const URL = "https://simplenotesbackend.onrender.com";
 
   useEffect(() => {
     if (!authToken) {
