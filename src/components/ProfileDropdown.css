@@ -4,14 +4,25 @@
 }
 
 .profile-icon {
-  font-size: 1.2rem;
-  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;          /* Set width and height to make a circular button */
+  height: 2.5rem;
   background-color: #464545;
   color: #fff;
   border: none;
-  border-radius: 50%;
+  border-radius: 50%;     /* Ensures a circular shape */
   cursor: pointer;
+  font-size: 1.5rem;      /* Adjust icon size to fit within button */
+  padding: 0;             /* Remove padding to center icon */
+  transition: background-color 0.3s;  /* Optional: smooth hover effect */
 }
+
+.profile-icon:hover {
+  background-color: #333333; /* Darker shade for hover effect */
+}
+
 
 .dropdown-menu {
   position: absolute;

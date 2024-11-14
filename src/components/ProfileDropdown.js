@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { FaUserCircle } from "react-icons/fa"; // Import the user icon
 import "./ProfileDropdown.css";
 
 const ProfileDropdown = () => {
-  const { logout, user } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const dropdownRef = useRef(null); // Ref for dropdown menu
@@ -45,8 +46,8 @@ const ProfileDropdown = () => {
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button className="profile-icon" onClick={toggleDropdown}>
-        {/* Profile Icon or Initial */}
-        {user?.username?.charAt(0).toUpperCase() || "P"}
+        {/* Use the FaUserCircle icon */}
+        <FaUserCircle size={24} /> {/* Adjust size as needed */}
       </button>
       {isDropdownOpen && (
         <div className="dropdown-menu">

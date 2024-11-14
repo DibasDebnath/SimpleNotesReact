@@ -7,7 +7,7 @@ import "./Profile.css";
 const Profile = () => {
   const { authToken, user, setUser, URL, setAuthToken } =
     useContext(AuthContext); // Access the user and authToken from AuthContext
-  const [username, setUsername] = useState(user.username || ""); // Initialize username from user data
+  const [username, setUsername] = useState(user?.username || ""); // Initialize username from user data
   const [isUpdating, setIsUpdating] = useState(false);
   const [usernameError, setUsernameError] = useState(""); // Separate error for username update
   const [passwordError, setPasswordError] = useState(""); // Separate error for password update
@@ -192,7 +192,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="profile-form">
-        <p className="email">Email - {user.email}</p>
+        <p className="email">Email - {user?.email}</p>
         <h1>Display Name</h1>
 
         <div className="profile-input-container">
@@ -208,7 +208,7 @@ const Profile = () => {
           <button
             className="update-btn"
             onClick={handleUpdate}
-            disabled={isUpdating || username === user.username} // Disable if updating or no change in username
+            disabled={isUpdating || username === user?.username} // Disable if updating or no change in username
           >
             {isUpdating ? "Updating..." : "Update Display Name"}
           </button>

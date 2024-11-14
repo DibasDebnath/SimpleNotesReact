@@ -11,7 +11,6 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Profile from "./pages/Profile";
 
-
 function App() {
   // Protected route component
   const ProtectedRoute = ({ children }) => {
@@ -21,8 +20,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <HashRouter basename="/">
-        <AuthProvider>
+      <AuthProvider>
+        <HashRouter basename="/">
           <Navbar />
           <div className="content">
             <Routes>
@@ -38,11 +37,13 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              {/* Catch-all route for undefined paths */}
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
           <Footer />
-        </AuthProvider>
-      </HashRouter>
+        </HashRouter>
+      </AuthProvider>
     </div>
   );
 }
