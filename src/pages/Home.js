@@ -22,6 +22,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+   const [addNoteError, setAddNoteError] = useState("");
   const navigate = useNavigate();
   const textareaRef = useRef(null);
   // const URL = "http://localhost:4000";
@@ -64,12 +65,15 @@ const Home = () => {
           setDetails("");
           setIsInputVisible(false);
           setErrors({ title: false, details: false });
+          setAddNoteError("");
         } else {
           console.error("Failed to add note");
           //alert("Failed to add note");
+          setAddNoteError("Failed to add note. Please try again.");
         }
       } catch (error) {
         console.error("Error adding the note:", error);
+        setAddNoteError("Failed to add note. Please try again.");
         //alert("Failed to add note");
       }
     }
@@ -161,6 +165,7 @@ const Home = () => {
           setTitle("");
           setDetails("");
           setErrors({ title: false, details: false });
+          setAddNoteError("");
         }}
       >
         {isInputVisible ? "Close Note Input" : "Add New Note"}
@@ -191,9 +196,13 @@ const Home = () => {
             className={errors.details ? "error" : ""}
           />
           <button type="submit">Add Note</button>
+
+          {/* Display error message if there's an error adding the note */}
+          {addNoteError && <p className="error-message">{addNoteError}</p>}
+
         </form>
       )}
-      <br/>
+      <br />
       <input
         className="toggle-search-input"
         type="text"
@@ -229,7 +238,7 @@ const Home = () => {
           onClick={loadMoreNotes}
           disabled={isLoading}
         >
-          {isLoading ? "Loading..." : "Load More Notes"}
+          {isLoading ? "Loading Please Wait..." : "Load More Notes"}
         </button>
       )}
     </div>

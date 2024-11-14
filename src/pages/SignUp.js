@@ -88,7 +88,7 @@ const SignUp = () => {
             onChange={handleChange}
             placeholder="Display Name"
             required
-            maxLength={20}
+            maxLength={10}
           />
           <input
             type="email"

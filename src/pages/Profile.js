@@ -202,7 +202,7 @@ const Profile = () => {
             value={username}
             onChange={handleUsernameChange}
             placeholder="Display Name"
-            maxLength="20"
+            maxLength="10"
             required
           />
           <button
